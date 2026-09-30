@@ -1,0 +1,9 @@
+.cart-mini {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon {
+  font-size: 1.5rem;
+}

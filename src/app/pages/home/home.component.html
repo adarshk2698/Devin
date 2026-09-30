@@ -1,0 +1,63 @@
+<div class="home">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Welcome to ShopHub</h1>
+        <p>Discover amazing products at unbeatable prices</p>
+        <button class="cta-button" routerLink="/products">Shop Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="featured-section">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      
+      <div class="loading" *ngIf="loading">
+        <p>Loading products...</p>
+      </div>
+      
+      <div class="products-grid" *ngIf="!loading">
+        <app-product-card 
+          *ngFor="let product of featuredProducts"
+          [product]="product"
+          (addToCart)="addToCart(product)">
+        </app-product-card>
+      </div>
+      
+      <div class="view-all" *ngIf="!loading">
+        <button class="view-all-btn" routerLink="/products">View All Products</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <h3>Free Shipping</h3>
+          <p>On orders over $50</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure Payment</h3>
+          <p>100% secure checkout</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">↩️</div>
+          <h3>Easy Returns</h3>
+          <p>30-day return policy</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>24/7 Support</h3>
+          <p>Dedicated support team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

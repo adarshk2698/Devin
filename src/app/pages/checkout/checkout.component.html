@@ -1,0 +1,258 @@
+<div class="checkout-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Checkout</h1>
+      <p>Complete your order</p>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading" *ngIf="loading">
+      <p>Loading checkout...</p>
+    </div>
+
+    <!-- Order Success -->
+    <div class="order-success" *ngIf="orderPlaced">
+      <div class="success-icon">✓</div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for your purchase. You will be redirected to the home page shortly.</p>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="checkout-content" *ngIf="!loading && !orderPlaced">
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="checkout-grid">
+          <!-- Shipping Information -->
+          <div class="shipping-section">
+            <h2>Shipping Information</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name *</label>
+                <input 
+                  type="text" 
+                  formControlName="firstName"
+                  placeholder="John"
+                  [class.error]="checkoutForm.get('firstName')?.invalid && checkoutForm.get('firstName')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('firstName')?.invalid && checkoutForm.get('firstName')?.touched">
+                  {{ getErrorMessage('firstName') }}
+                </span>
+              </div>
+              
+              <div class="form-group">
+                <label>Last Name *</label>
+                <input 
+                  type="text" 
+                  formControlName="lastName"
+                  placeholder="Doe"
+                  [class.error]="checkoutForm.get('lastName')?.invalid && checkoutForm.get('lastName')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('lastName')?.invalid && checkoutForm.get('lastName')?.touched">
+                  {{ getErrorMessage('lastName') }}
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email *</label>
+              <input 
+                type="email" 
+                formControlName="email"
+                placeholder="john.doe@example.com"
+                [class.error]="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+              <span class="error-message" *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+                {{ getErrorMessage('email') }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>Phone *</label>
+              <input 
+                type="tel" 
+                formControlName="phone"
+                placeholder="1234567890"
+                [class.error]="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+              <span class="error-message" *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+                {{ getErrorMessage('phone') }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>Address *</label>
+              <input 
+                type="text" 
+                formControlName="address"
+                placeholder="123 Main Street"
+                [class.error]="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+              <span class="error-message" *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+                {{ getErrorMessage('address') }}
+              </span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>City *</label>
+                <input 
+                  type="text" 
+                  formControlName="city"
+                  placeholder="New York"
+                  [class.error]="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched">
+                  {{ getErrorMessage('city') }}
+                </span>
+              </div>
+              
+              <div class="form-group">
+                <label>State *</label>
+                <input 
+                  type="text" 
+                  formControlName="state"
+                  placeholder="NY"
+                  [class.error]="checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched">
+                  {{ getErrorMessage('state') }}
+                </span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>ZIP Code *</label>
+                <input 
+                  type="text" 
+                  formControlName="zipCode"
+                  placeholder="12345"
+                  [class.error]="checkoutForm.get('zipCode')?.invalid && checkoutForm.get('zipCode')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('zipCode')?.invalid && checkoutForm.get('zipCode')?.touched">
+                  {{ getErrorMessage('zipCode') }}
+                </span>
+              </div>
+              
+              <div class="form-group">
+                <label>Country *</label>
+                <input 
+                  type="text" 
+                  formControlName="country"
+                  [class.error]="checkoutForm.get('country')?.invalid && checkoutForm.get('country')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('country')?.invalid && checkoutForm.get('country')?.touched">
+                  {{ getErrorMessage('country') }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Information -->
+          <div class="payment-section">
+            <h2>Payment Information</h2>
+            
+            <div class="form-group">
+              <label>Card Number *</label>
+              <input 
+                type="text" 
+                formControlName="cardNumber"
+                placeholder="1234567890123456"
+                maxlength="16"
+                [class.error]="checkoutForm.get('cardNumber')?.invalid && checkoutForm.get('cardNumber')?.touched">
+              <span class="error-message" *ngIf="checkoutForm.get('cardNumber')?.invalid && checkoutForm.get('cardNumber')?.touched">
+                {{ getErrorMessage('cardNumber') }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>Cardholder Name *</label>
+              <input 
+                type="text" 
+                formControlName="cardName"
+                placeholder="John Doe"
+                [class.error]="checkoutForm.get('cardName')?.invalid && checkoutForm.get('cardName')?.touched">
+              <span class="error-message" *ngIf="checkoutForm.get('cardName')?.invalid && checkoutForm.get('cardName')?.touched">
+                {{ getErrorMessage('cardName') }}
+              </span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Expiry Date *</label>
+                <input 
+                  type="text" 
+                  formControlName="expiryDate"
+                  placeholder="MM/YY"
+                  maxlength="5"
+                  [class.error]="checkoutForm.get('expiryDate')?.invalid && checkoutForm.get('expiryDate')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('expiryDate')?.invalid && checkoutForm.get('expiryDate')?.touched">
+                  {{ getErrorMessage('expiryDate') }}
+                </span>
+              </div>
+              
+              <div class="form-group">
+                <label>CVV *</label>
+                <input 
+                  type="text" 
+                  formControlName="cvv"
+                  placeholder="123"
+                  maxlength="4"
+                  [class.error]="checkoutForm.get('cvv')?.invalid && checkoutForm.get('cvv')?.touched">
+                <span class="error-message" *ngIf="checkoutForm.get('cvv')?.invalid && checkoutForm.get('cvv')?.touched">
+                  {{ getErrorMessage('cvv') }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+              <h2>Order Summary</h2>
+              
+              <div class="summary-item">
+                <span>Subtotal</span>
+                <span>${{ calculateSubtotal().toFixed(2) }}</span>
+              </div>
+              
+              <div class="summary-item">
+                <span>Shipping</span>
+                <span>{{ calculateShipping() === 0 ? 'FREE' : '$' + calculateShipping().toFixed(2) }}</span>
+              </div>
+              
+              <div class="summary-item">
+                <span>Tax (8%)</span>
+                <span>${{ calculateTax().toFixed(2) }}</span>
+              </div>
+              
+              <div class="summary-divider"></div>
+              
+              <div class="summary-item total">
+                <span>Total</span>
+                <span>${{ calculateTotal().toFixed(2) }}</span>
+              </div>
+            </div>
+
+            <!-- Additional Options -->
+            <div class="additional-options">
+              <label class="checkbox-label">
+                <input type="checkbox" formControlName="saveInfo">
+                <span>Save shipping and payment information for next time</span>
+              </label>
+              
+              <label class="checkbox-label">
+                <input type="checkbox" formControlName="terms">
+                <span>I agree to the terms and conditions *</span>
+              </label>
+              <span class="error-message" *ngIf="checkoutForm.get('terms')?.invalid && checkoutForm.get('terms')?.touched">
+                {{ getErrorMessage('terms') }}
+              </span>
+            </div>
+
+            <button 
+              type="submit" 
+              class="place-order-btn"
+              [disabled]="checkoutForm.invalid">
+              Place Order - ${{ calculateTotal().toFixed(2) }}
+            </button>
+
+            <button type="button" class="back-to-cart-btn" routerLink="/cart">
+              ← Back to Cart
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="products-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Our Products</h1>
+      <p>Browse our collection of quality products</p>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <input 
+          type="text" 
+          placeholder="Search products..." 
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()"
+          class="search-input">
+        <button class="search-btn" (click)="onSearch()">Search</button>
+      </div>
+
+      <div class="category-filter">
+        <select 
+          [(ngModel)]="selectedCategory" 
+          (change)="filterByCategory(selectedCategory)"
+          class="category-select">
+          <option value="">All Categories</option>
+          <option *ngFor="let category of categories$ | async" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading" *ngIf="loading">
+      <p>Loading products...</p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" *ngIf="!loading">
+      <app-product-card 
+        *ngFor="let product of products$ | async"
+        [product]="product"
+        (addToCart)="addToCart(product)">
+      </app-product-card>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="!loading && (products$ | async)?.length === 0">
+      <p>No products found matching your criteria.</p>
+      <button class="reset-btn" (click)="selectedCategory = ''; searchQuery = ''; filterByCategory('')">Reset Filters</button>
+    </div>
+  </div>
+</div>

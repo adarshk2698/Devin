@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo" (click)="navigateToHome()">
+        <h1>ShopHub</h1>
+      </div>
+      
+      <nav class="nav">
+        <a (click)="navigateToHome()" class="nav-link">Home</a>
+        <a (click)="navigateToProducts()" class="nav-link">Products</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" (click)="toggleTheme()" [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+          {{ isDarkMode ? '☀️' : '🌙' }}
+        </button>
+        
+        <button class="cart-button" (click)="navigateToCart()">
+          🛒
+          <span class="cart-count" *ngIf="cartItemCount$ | async as count">
+            {{ count > 0 ? count : '' }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
