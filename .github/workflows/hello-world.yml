@@ -11,28 +11,28 @@ jobs:
 
     steps:
       - name: Hello World
-        run: echo "Hello World from my self-hosted runner!"
-        shell: powershell
+        run: echo Hello World from my self-hosted runner!
+        shell: cmd
 
       - name: Check Java Version
         run: java -version
-        shell: powershell
+        shell: cmd
 
       - name: Print JAVA_HOME
-        run: echo $env:JAVA_HOME
-        shell: powershell
+        run: echo %JAVA_HOME%
+        shell: cmd
 
       - name: Print Runner Information
         run: |
-          echo "Operating System:"
-          echo $env:OS
+          echo Operating System:
+          echo %OS%
 
-          echo "Runner Name:"
-          echo $env:RUNNER_NAME
+          echo Runner Name:
+          echo %RUNNER_NAME%
 
-          echo "Runner OS:"
-          echo $env:RUNNER_OS
+          echo Runner OS:
+          echo %RUNNER_OS%
 
-          echo "Runner Architecture:"
-          echo $env:RUNNER_ARCH
-        shell: powershell
+          echo Runner Architecture:
+          echo %RUNNER_ARCH%
+        shell: cmd
