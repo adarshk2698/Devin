@@ -1,9 +1,7 @@
 name: Hello Self Hosted Runner
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   hello:
