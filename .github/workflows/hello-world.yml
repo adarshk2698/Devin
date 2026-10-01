@@ -7,32 +7,32 @@ on:
 
 jobs:
   hello:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Hello World
         run: echo Hello World from my self-hosted runner!
-        shell: cmd
+        shell: bash
 
       - name: Check Java Version
         run: java -version
-        shell: cmd
+        shell: bash
 
       - name: Print JAVA_HOME
-        run: echo %JAVA_HOME%
-        shell: cmd
+        run: echo $JAVA_HOME
+        shell: bash
 
       - name: Print Runner Information
         run: |
           echo Operating System:
-          echo %OS%
+          echo $OS
 
           echo Runner Name:
-          echo %RUNNER_NAME%
+          echo $RUNNER_NAME
 
           echo Runner OS:
-          echo %RUNNER_OS%
+          echo $RUNNER_OS
 
           echo Runner Architecture:
-          echo %RUNNER_ARCH%
-        shell: cmd
+          echo $RUNNER_ARCH
+        shell: bash
