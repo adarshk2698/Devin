@@ -1,0 +1,34 @@
+name: Hello Self Hosted Runner
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello:
+    runs-on: self-hosted
+
+    steps:
+      - name: Hello World
+        run: echo "Hello World from my self-hosted runner!"
+
+      - name: Check Java Version
+        run: java -version
+
+      - name: Print JAVA_HOME
+        run: echo $env:JAVA_HOME
+
+      - name: Print Runner Information
+        run: |
+          echo "Operating System:"
+          echo $env:OS
+
+          echo "Runner Name:"
+          echo $env:RUNNER_NAME
+
+          echo "Runner OS:"
+          echo $env:RUNNER_OS
+
+          echo "Runner Architecture:"
+          echo $env:RUNNER_ARCH
