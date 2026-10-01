@@ -12,15 +12,15 @@ jobs:
     steps:
       - name: Hello World
         run: echo "Hello World from my self-hosted runner!"
-        shell: pwsh
+        shell: powershell
 
       - name: Check Java Version
         run: java -version
-        shell: pwsh
+        shell: powershell
 
       - name: Print JAVA_HOME
         run: echo $env:JAVA_HOME
-        shell: pwsh
+        shell: powershell
 
       - name: Print Runner Information
         run: |
@@ -35,4 +35,4 @@ jobs:
 
           echo "Runner Architecture:"
           echo $env:RUNNER_ARCH
-        shell: pwsh
+        shell: powershell
